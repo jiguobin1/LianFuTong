@@ -69,6 +69,7 @@ for lan,num in ws_huidu:
 
 
 
+
 #进入消息循环R
 myWindow.mainloop()
 
