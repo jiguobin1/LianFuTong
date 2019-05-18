@@ -68,6 +68,7 @@ for lan,num in ws_huidu:
 #     Radiobutton(myWindow, text=lan, value=num, command=callRB, variable=v).pack(fill=X,side = LEFT)
 
 
+
 #进入消息循环R
 myWindow.mainloop()
 
