@@ -9,9 +9,9 @@ class WsPage(am):
     def __init__(self,sheet,row):
         self.sheet=sheet
         self.data=(dict(zip(self.get_excel_value(sheet,0), self.get_excel_value(sheet,row-1))))
+        print(self.data)
 
     def main(self):
-            print(self.data)
             Public.login_ms(self,url=self.data['环境'],name=self.data['账号'],password=self.data['密码'])#登录
             Public.merchantType(self,'ws')
             self.aisleInfo()
@@ -121,7 +121,7 @@ class WsPage(am):
         self.input(by.ID,'multipartFile2',self.data['国徽面照片'])
         self.input(by.ID,'multipartFile3',self.data['门头照'])
 
-
-
-w=WsPage('网商企业',3)
-w.main()
+#
+#
+# w=WsPage('网商个人',3)
+# w.main()

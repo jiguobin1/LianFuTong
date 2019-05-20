@@ -7,8 +7,9 @@ class KsPage(am):
     def __init__(self,sheet,row):
         self.sheet=sheet
         self.data=(dict(zip(self.get_excel_value(sheet,0), self.get_excel_value(sheet,row-1))))
+        print(self.data)
 
-
+    #流程
     def main(self):
         print(self.data)
         Public.login_ms(self,url=self.data['环境'],name=self.data['账号'],password=self.data['密码'])#登录
@@ -17,7 +18,6 @@ class KsPage(am):
         self.merchantInfo()
         self.bankInfo()
         self.imageInfo()
-
 
     #选择通道
     def aisleInfo(self):
@@ -144,8 +144,8 @@ class KsPage(am):
 
 
 
-k=KsPage('客商个人',4)
-k.main()
+# k=KsPage('客商个人',4)
+# k.main()
 
 
 
