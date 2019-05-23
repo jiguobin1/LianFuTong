@@ -2,6 +2,9 @@
 # author：jiguobin
 from case.Ws import WsPage
 from case.Ks import KsPage
+from case.Ls import LsPage
+from case.AddMerchant import AddMerchant
+from case.AddStore import AddStore
 from tkinter import *
 from tkinter import ttk
 #
@@ -26,48 +29,66 @@ ws_test=[('网商个人','个人测试',0,2)]
 #定义单选按钮的响应函数
 
 def callRB():
-	for i in range(len(ws_test)):
-		if (v.get()==i):
-			root1 = Tk()
-			if ws_test[i][0]=='网商个人':
-				Button(root1, text='进件', width=3, height=1, command=lambda:b2(root1,i)).pack(side='bottom')
-			if ws_test[i][0]=='网商个体':
-				Button(root1, text='进件', width=3, height=1, command=lambda: b3(root1,i)).pack(side='bottom')
-			if ws_test[i][0]=='网商企业':
-				Button(root1, text='进件', width=3, height=1, command=lambda: b4(root1, i)).pack(side='bottom')
-			if ws_test[i][0]=='客商个人':
-				Button(root1, text='进件', width=3, height=1, command=lambda: b5(root1, i)).pack(side='bottom')
-			if ws_test[i][0]=='客商企业':
-				Button(root1, text='进件', width=3, height=1, command=lambda: b6(root1, i)).pack(side='bottom')
-			if ws_test[i][0]=='乐刷个人':
-				Button(root1, text='进件', width=3, height=1, command=lambda: b7(root1, i)).pack(side='bottom')
-			if ws_test[i][0]=='乐刷企业':
-				Button(root1, text='进件', width=3, height=1, command=lambda: b8(root1, i)).pack(side='bottom')
-			Label(root1, text='你的选择是' + ws_test[i][1] + '!', 
-fg='red', width=20, height=6).pack()
+    for i in range(len(ws_test)):
+        if (v.get()==i):
+            root1 = Tk()
+            if ws_test[i][0]=='网商个人':
+                Button(root1, text='进件', width=3, height=1, command=lambda:b2(root1,i)).pack(side='bottom')
+            if ws_test[i][0]=='网商个体':
+                Button(root1, text='进件', width=3, height=1, command=lambda: b3(root1,i)).pack(side='bottom')
+            if ws_test[i][0]=='网商企业':
+                Button(root1, text='进件', width=3, height=1, command=lambda: b4(root1, i)).pack(side='bottom')
+            if ws_test[i][0]=='客商个人':
+                Button(root1, text='进件', width=3, height=1, command=lambda: b5(root1, i)).pack(side='bottom')
+            if ws_test[i][0]=='客商企业':
+                Button(root1, text='进件', width=3, height=1, command=lambda: b6(root1, i)).pack(side='bottom')
+            if ws_test[i][0]=='乐刷个人':
+                Button(root1, text='进件', width=3, height=1, command=lambda: b7(root1, i)).pack(side='bottom')
+            if ws_test[i][0]=='乐刷企业':
+                Button(root1, text='进件', width=3, height=1, command=lambda: b8(root1, i)).pack(side='bottom')
+            if ws_test[i][0]=='新增商户':
+                Button(root1, text='进件', width=3, height=1, command=lambda: b9(root1, i)).pack(side='bottom')
+            if ws_test[i][0]=='新增门店':
+                Button(root1, text='进件', width=3, height=1, command=lambda: b10(root1, i)).pack(side='bottom')
+            Label(root1, text='你的选择是' + ws_test[i][1] + '!', fg='red', width=20, height=6).pack()
 #进件
 def b2(root1,i):
-	w = WsPage('网商个人', int(ws_test[i][3]))
-	# w.main()
-	root1.destroy()
+    w = WsPage('网商个人', int(ws_test[i][3]))
+    w.main()
+    root1.destroy()
 def b3(root1,i):
-	w = WsPage('网商个体', int(ws_test[i][3]))
-	root1.destroy()
+    w = WsPage('网商个体', int(ws_test[i][3]))
+    w.main()
+    root1.destroy()
 def b4(root1,i):
-	w = WsPage('网商企业', int(ws_test[i][3]))
-	root1.destroy()
+    w = WsPage('网商企业', int(ws_test[i][3]))
+    w.main()
+    root1.destroy()
 def b5(root1,i):
-	k = KsPage('客商个人', int(ws_test[i][3]))
-	root1.destroy()
+    k = KsPage('客商个人', int(ws_test[i][3]))
+    k.main()
+    root1.destroy()
 def b6(root1,i):
-	k = KsPage('客商企业', int(ws_test[i][3]))
-	root1.destroy()
+    k = KsPage('客商企业', int(ws_test[i][3]))
+    k.main()
+    root1.destroy()
 def b7(root1,i):
-	k = KsPage('乐刷个人', int(ws_test[i][3]))
-	root1.destroy()
+    l = LsPage('乐刷个人', int(ws_test[i][3]))
+    l.main()
+    root1.destroy()
 def b8(root1,i):
-	k = KsPage('乐刷企业', int(ws_test[i][3]))
-	root1.destroy()
+    l = LsPage('乐刷企业', int(ws_test[i][3]))
+    l.main()
+    root1.destroy()
+def b9(root1,i):
+    addm=AddMerchant('新增商户',int(ws_test[i][3]))
+    addm.main()
+    root1.destroy()
+def b10(root1,i):
+    adds=AddStore('新增门店',int(ws_test[i][3]))
+    adds.main()
+    root1.destroy()
+
 
 
 

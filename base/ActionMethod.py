@@ -5,6 +5,7 @@ from selenium import webdriver
 import time
 import xlrd
 import os
+from selenium.webdriver.common.keys import Keys
 class ActionMethod:
     #打开浏览器
     def open_browser(self,browser):
@@ -73,6 +74,21 @@ class ActionMethod:
             self.driver.find_element_by_link_text(value).clear()
         elif type == "partial_link_text":
             self.driver.find_element_by_partial_link_text(value).clear()
+
+    #键盘事件keys
+    def keys(self,type, value):
+        if type == "xpath":
+            self.driver.find_element_by_xpath(value).send_keys(Keys.BACK_SPACE)
+        elif type == "class name":
+            self.driver.find_element_by_class_name(value).send_keys(Keys.BACK_SPACE)
+        elif type == "id":
+            self.driver.find_element_by_id(value).send_keys(Keys.BACK_SPACE)
+        elif type == "name":
+            self.driver.find_element_by_name(value).send_keys(Keys.BACK_SPACE)
+        elif type == "link text":
+            self.driver.find_element_by_link_text(value).send_keys(Keys.BACK_SPACE)
+        elif type == "partial_link_text":
+            self.driver.find_element_by_partial_link_text(value).send_keys(Keys.BACK_SPACE)
 
     #输入
     def input(self, type, value, inputvalue):

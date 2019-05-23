@@ -51,7 +51,7 @@ class Public:
         # self.sleep_time(2)
 
 
-    #查找商户或门店
+    #查找商户或门店进件
     def merchantType(self,type):
         self.click(by.XPATH,'//*[@id="togglemenu"]/li[1]/a')   #商户管理
         self.sleep_time(0.5)
@@ -81,3 +81,8 @@ class Public:
             self.click(by.ID,'addBankConfigureForWS')
         elif type=='ls':
             self.click(by.ID,'addBankConfigureForYeahka')
+
+
+
+
+

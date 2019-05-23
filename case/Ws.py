@@ -121,7 +121,7 @@ class WsPage(am):
         self.input(by.ID,'multipartFile2',self.data['国徽面照片'])
         self.input(by.ID,'multipartFile3',self.data['门头照'])
 
-#
+
 #
 # w=WsPage('网商个人',3)
 # w.main()
