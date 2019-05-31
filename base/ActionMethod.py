@@ -1,12 +1,14 @@
 #coding=utf-8
 #author：jiguobin
-# from util import FindElement
+# from util1 import FindElement
 from selenium import webdriver
 import time
 import xlrd
 import os
 from selenium.webdriver.common.keys import Keys
-class ActionMethod:
+class ActionMethod():
+    def __init__(self):
+        pass
     #打开浏览器
     def open_browser(self,browser):
         if browser == 'chrome':
@@ -119,7 +121,7 @@ class ActionMethod:
             self.driver.find_element_by_name(value).click()
         elif type == "link text":
             self.driver.find_element_by_link_text(value).click()
-        elif type == "partial_link_text":
+        elif type == "partial link text":
             self.driver.find_element_by_partial_link_text(value).click()
 
 
@@ -133,7 +135,9 @@ class ActionMethod:
         '''
         if file_name == None:
             #默认地址
-            file_name = os.path.dirname(os.path.abspath('.'))+'\data\excel\ks_info.xlsx'
+            # file_name = os.path.dirname(os.path.abspath('.'))+'\data\excel\ks_info.xlsx'
+            file_name = 'D:\\liantuo\\LianFuTong\\data\excel\\ks_info.xlsx'
+            print(file_name)
         else:
             self.file_name=file_name
         book = xlrd.open_workbook(file_name) #打开一个excel

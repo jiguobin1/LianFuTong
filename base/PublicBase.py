@@ -1,7 +1,9 @@
 # coding：utf-8
 #author：jiguobin
 from selenium.webdriver.common.by import By as by
-class Public:
+class Public():
+    def __init__(self):
+        pass
 
     #登录ms
     def login_ms(self,type=None,url=None,name=None,password=None):
@@ -18,8 +20,8 @@ class Public:
             types='chrome'
         self.open_browser(types)
         if url=='测试':
-            # test_url='http://192.168.19.103:8000/ms/login.in'
-            test_url='http://192.168.140.15/ms/login.in'
+            test_url='http://192.168.19.103:8000/ms/login.in'
+            # test_url='http://192.168.140.15/ms/login.in'
             self.get_url(test_url)
             self.input('id','logInName',name)
             self.input('id','password',password)
@@ -37,6 +39,9 @@ class Public:
         #手动输入验证码
         self.sleep_time(5)
         self.click('id','submitForm')
+        # if self.driver.find_element_by_id('errorVerifyCode').text=='验证码输入错误':
+        #     self.sleep_time(5)
+        #     self.click('id','submitForm')
         self.sleep_time(2)
         # file_name='D:\image_code.png'
         # self.get_code_image(file_name)
@@ -78,6 +83,9 @@ class Public:
         if type=='ks':
             self.click(by.ID,'addBankConfigureForKS')
         elif type=='ws':
+            #下拉滚动条到底部
+            js="var q=document.documentElement.scrollTop=100000"
+            self.driver.execute_script(js)
             self.click(by.ID,'addBankConfigureForWS')
         elif type=='ls':
             self.click(by.ID,'addBankConfigureForYeahka')

@@ -1,10 +1,14 @@
 #coding=utf-8
 #author：jiguobin
-from base.ActionMethod import ActionMethod as am
-from selenium.webdriver.common.by import By as by
-from base.PublicBase import Public
 import random
 import string
+
+from selenium.webdriver.common.by import By as by
+
+from base.ActionMethod import ActionMethod as am
+from base.PublicBase import Public
+
+
 class WsPage(am):
     def __init__(self,sheet,row):
         self.sheet=sheet
@@ -122,6 +126,6 @@ class WsPage(am):
         self.input(by.ID,'multipartFile3',self.data['门头照'])
 
 
-#
-# w=WsPage('网商个人',3)
+
+w=WsPage('网商个人',6)
 # w.main()

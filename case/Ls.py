@@ -1,8 +1,11 @@
 #coding=utf-8
 #author：jiguobin
-from base.ActionMethod import ActionMethod as am
 from selenium.webdriver.common.by import By as by
+
+from base.ActionMethod import ActionMethod as am
 from base.PublicBase import Public
+
+
 class LsPage(am):
     def __init__(self,sheet,row):
         self.sheet=sheet
@@ -53,12 +56,21 @@ class LsPage(am):
         self.input(by.ID,'mobile',self.data['联系人手机号码'])
         self.input(by.ID,'customerPhone',self.data['客服电话'])
         #商户所属地区  门店有问题
-        self.click(by.XPATH,'/html/body/div[1]/form[3]/div[4]/div/div[8]/div[1]/div[1]/div/a/label')
-        self.click(by.LINK_TEXT,self.data['商户省'])
-        self.click(by.XPATH,'/html/body/div[1]/form[3]/div[4]/div/div[8]/div[1]/div[2]/div/a/label')
-        self.click(by.LINK_TEXT,self.data['商户市'])
-        self.click(by.XPATH,'/html/body/div[1]/form[3]/div[4]/div/div[8]/div[1]/div[3]/div/a/label')
-        self.click(by.LINK_TEXT,self.data['商户区'])
+        if self.data['门店id']!='':
+            self.click(by.XPATH,'/html/body/div[1]/form/div[4]/div[1]/div[8]/div[1]/div[1]/div/a/label')
+            self.click(by.LINK_TEXT,self.data['商户省'])
+            self.click(by.XPATH,'/html/body/div[1]/form/div[4]/div[1]/div[8]/div[1]/div[2]/div/a/label')
+            self.click(by.LINK_TEXT,self.data['商户市'])
+            self.click(by.XPATH,'/html/body/div[1]/form/div[4]/div[1]/div[8]/div[1]/div[3]/div/a/label')
+            self.click(by.LINK_TEXT,self.data['商户区'])
+        else:
+            self.click(by.XPATH,'/html/body/div[1]/form[3]/div[4]/div/div[8]/div[1]/div[1]/div/a/label')
+            self.click(by.LINK_TEXT,self.data['商户省'])
+            self.click(by.XPATH,'/html/body/div[1]/form[3]/div[4]/div/div[8]/div[1]/div[2]/div/a/label')
+            self.click(by.LINK_TEXT,self.data['商户市'])
+            self.click(by.XPATH,'/html/body/div[1]/form[3]/div[4]/div/div[8]/div[1]/div[3]/div/a/label')
+            self.click(by.LINK_TEXT,self.data['商户区'])
+
         self.clear(by.ID,'address')
         self.input(by.ID,'address',self.data['商户详细地址'])
         self.input(by.ID,'businessLicenseNo',self.data['营业执照编号'])
@@ -83,25 +95,44 @@ class LsPage(am):
         self.click(by.LINK_TEXT,self.data['结算人类型'])
         #北京省北京市同一个值 text定位不到
         if self.data['开户省']=='北京':
-            self.click(by.XPATH,'/html/body/div[1]/form[3]/div[4]/div/div[18]/div/div[1]/div/div[1]/div/a/label')
-            self.click(by.XPATH,'/html/body/div[1]/form[3]/div[4]/div/div[18]/div/div[1]/div/div[1]/div/dl/dd[2]/a')
-            self.click(by.XPATH,'/html/body/div[1]/form[3]/div[4]/div/div[18]/div/div[1]/div/div[2]/div/a/label')
-            self.click(by.XPATH,'/html/body/div[1]/form[3]/div[4]/div/div[18]/div/div[1]/div/div[2]/div/dl/dd[2]/a')
+            if self.data['门店id']!='':
+                self.click(by.XPATH,'/html/body/div[1]/form/div[4]/div[1]/div[18]/div/div[1]/div/div[1]/div/a/label')
+                self.click(by.XPATH,'/html/body/div[1]/form/div[4]/div[1]/div[18]/div/div[1]/div/div[1]/div/dl/dd[2]/a')
+                self.click(by.XPATH,'/html/body/div[1]/form/div[4]/div[1]/div[18]/div/div[1]/div/div[2]/div/a/label')
+                self.click(by.XPATH,'/html/body/div[1]/form/div[4]/div[1]/div[18]/div/div[1]/div/div[2]/div/dl/dd[2]/a')
+            else:
+                self.click(by.XPATH,'/html/body/div[1]/form[3]/div[4]/div/div[18]/div/div[1]/div/div[1]/div/a/label')
+                self.click(by.XPATH,'/html/body/div[1]/form[3]/div[4]/div/div[18]/div/div[1]/div/div[1]/div/dl/dd[2]/a')
+                self.click(by.XPATH,'/html/body/div[1]/form[3]/div[4]/div/div[18]/div/div[1]/div/div[2]/div/a/label')
+                self.click(by.XPATH,'/html/body/div[1]/form[3]/div[4]/div/div[18]/div/div[1]/div/div[2]/div/dl/dd[2]/a')
         else:
-            self.click(by.XPATH,'/html/body/div[1]/form[3]/div[4]/div/div[18]/div/div[1]/div/div[1]/div/a/label')
-            self.click(by.LINK_TEXT,self.data['开户省'])
-            self.click(by.XPATH,'/html/body/div[1]/form[3]/div[4]/div/div[18]/div/div[1]/div/div[2]/div/a/label')
-            self.click(by.LINK_TEXT,self.data['开户市'])
+            if self.data['门店id']!='':
+                self.click(by.XPATH,'/html/body/div[1]/form/div[4]/div[1]/div[18]/div/div[1]/div/div[1]/div/a/label')
+                self.click(by.LINK_TEXT,self.data['开户省'])
+                self.click(by.XPATH,'/html/body/div[1]/form/div[4]/div[1]/div[18]/div/div[1]/div/div[2]/div/a/label')
+                self.click(by.LINK_TEXT,self.data['开户市'])
+            else:
+                self.click(by.XPATH,'/html/body/div[1]/form[3]/div[4]/div/div[18]/div/div[1]/div/div[1]/div/a/label')
+                self.click(by.LINK_TEXT,self.data['开户省'])
+                self.click(by.XPATH,'/html/body/div[1]/form[3]/div[4]/div/div[18]/div/div[1]/div/div[2]/div/a/label')
+                self.click(by.LINK_TEXT,self.data['开户市'])
         self.input(by.ID,'bankName',self.data['开户银行'])
         self.sleep_time(0.5)
-        self.click(by.XPATH,'/html/body/div/form[3]/div[4]/div[1]/div[18]/div/div[2]/div[1]/dl/dd')
+
+        if self.data['门店id']!='':
+            self.click(by.XPATH,'/html/body/div/form/div[4]/div[1]/div[18]/div/div[2]/div[1]/dl/dd')
+        else:
+            self.click(by.XPATH,'/html/body/div/form[3]/div[4]/div[1]/div[18]/div/div[2]/div[1]/dl/dd')
+
         #弹出开户支行名称处理
         self.input(by.ID,'branch',self.data['开户支行名称'])
         self.click(by.ID,'branch')
         self.keys(by.ID,'branch')
         self.sleep_time(1)
-        self.click(by.XPATH,'/html/body/div[1]/form[3]/div[4]/div/div[18]/div/div[4]/div/ul/li')
-
+        if self.data['门店id']!='':
+           self.click(by.XPATH,'/html/body/div/form/div[4]/div[1]/div[18]/div/div[4]/div/ul/li')
+        else:
+            self.click(by.XPATH,'/html/body/div[1]/form[3]/div[4]/div/div[18]/div/div[4]/div/ul/li')
         self.input(by.ID,'accountHolder',self.data['开户人'])
         self.input(by.ID,'cardNo',self.data['银行卡号'])
         self.input(by.ID,'accountHolderMobile',self.data['银行预留手机号'])
@@ -129,7 +160,6 @@ class LsPage(am):
 
 # l=LsPage('乐刷个人',4)
 # l.main()
-
 
 
 
