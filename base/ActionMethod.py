@@ -6,6 +6,8 @@ import time
 import xlrd
 import os
 from selenium.webdriver.common.keys import Keys
+from PIL import Image
+from util.ShowapiRequest import ShowapiRequest
 class ActionMethod():
     def __init__(self):
         pass
@@ -107,7 +109,28 @@ class ActionMethod():
         elif type == "partial_link_text":
             self.driver.find_element_by_partial_link_text(value).send_keys(inputvalue)
 
-     # 鼠标事件方法
+     #获取图片
+    def get_code_image(self,fiel_name):
+        self.driver.save_screenshot(fiel_name)
+        code_element=self.driver.find_element_by_id('verifyCode')
+        left=code_element.location['x']
+        top=code_element.location['y']
+        right=code_element.size['width']+left
+        height=code_element.size['height']+top
+        im=Image.open(fiel_name)
+        img=im.crop((left,top,right,height))
+        img.save(fiel_name)
+
+    #解析图片获取验证码
+    def code_online(self,file_name):
+        r = ShowapiRequest("http://route.showapi.com/184-4","99428","d45036c1767c402695abc3ac271ec35e" )
+        r.addBodyPara("typeId", "14")
+        r.addBodyPara("convert_to_jpg", "0")
+        r.addFilePara("image", file_name) #文件上传时设置
+        res = r.post()
+        print(res.text)
+        text = res.json()['showapi_res_body']['Result']
+        return text
 
     #点击事件
     def click(self, type, value):
@@ -119,6 +142,7 @@ class ActionMethod():
             self.driver.find_element_by_id(value).click()
         elif type == "name":
             self.driver.find_element_by_name(value).click()
+
         elif type == "link text":
             self.driver.find_element_by_link_text(value).click()
         elif type == "partial link text":
@@ -137,7 +161,7 @@ class ActionMethod():
             #默认地址
             # file_name = os.path.dirname(os.path.abspath('.'))+'\data\excel\ks_info.xlsx'
             file_name = 'D:\\liantuo\\LianFuTong\\data\excel\\ks_info.xlsx'
-            print(file_name)
+            # print(file_name)
         else:
             self.file_name=file_name
         book = xlrd.open_workbook(file_name) #打开一个excel

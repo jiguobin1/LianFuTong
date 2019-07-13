@@ -72,7 +72,7 @@ class AddMerchant(am):
 
 
 #
-# a=AddMerchant('新增商户',2)
-# a.main()
+a=AddMerchant('新增商户',7)
+a.main()
 
 

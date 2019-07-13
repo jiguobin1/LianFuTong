@@ -127,5 +127,5 @@ class WsPage(am):
 
 
 
-w=WsPage('网商个人',6)
-# w.main()
+w=WsPage('网商个人',2)
+w.main()

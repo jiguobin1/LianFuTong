@@ -1,6 +1,7 @@
 # coding：utf-8
 #author：jiguobin
 from selenium.webdriver.common.by import By as by
+from util.utils import Utils
 class Public():
     def __init__(self):
         pass
@@ -39,10 +40,30 @@ class Public():
         #手动输入验证码
         self.sleep_time(5)
         self.click('id','submitForm')
-        # if self.driver.find_element_by_id('errorVerifyCode').text=='验证码输入错误':
+        self.sleep_time(2)
+        # while self.driver.find_element_by_id('errorVerifyCode').text=='验证码输入错误':
+        #     print('输入验证码')
         #     self.sleep_time(5)
         #     self.click('id','submitForm')
-        self.sleep_time(2)
+        #     self.sleep_time(2)
+
+
+
+        # try:
+        #     while Utils.isElementExist(self,by.ID,'errorVerifyCode'):
+        #         print('输入验证码')
+        #         self.sleep_time(5)
+        #         self.click('id','submitForm')
+        #
+        # except:
+        #     self.sleep_time(2)
+        # else:
+        #     print('登录失败')
+
+
+
+
+        #自动识别验证按
         # file_name='D:\image_code.png'
         # self.get_code_image(file_name)
         # code_text=self.code_online(file_name)
